@@ -2,8 +2,9 @@
   import Toolbar from "./Toolbar.svelte";
   import Entry from "./Entry.svelte";
 
-  let { FS } = $props();
-  let dirPath = $state({ path: FS.cwd() });
+  let { FS, initialDir = FS.cwd() } = $props();
+  FS.chdir(initialDir);
+  let dirPath = $state({ path: initialDir });
   let dirData = $derived({ data: FS.analyzePath(dirPath.path) });
 </script>
 
