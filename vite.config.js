@@ -9,7 +9,7 @@ export default defineConfig({
       name: "FileExplorer",
       entry: "src/lib/index.js",
       formats: ["iife"],
-      fileName: () => 'emscripten-fs-file-explorer',
+      fileName: () => 'emscripten-fs-file-explorer.js',
     },
   },
 });
