@@ -6,6 +6,7 @@
     FolderPlusIcon,
     XIcon,
   } from "@lucide/svelte";
+  import { syncfs } from "./util";
   let { FS, dirPath = $bindable(), dirData } = $props();
 
   let showNewFolderDiv = $state(false);
@@ -35,9 +36,13 @@
         const uint8arr = new Uint8Array(await file.arrayBuffer());
         try {
           FS.writeFile(path, uint8arr, { flags: "w+" });
+          try {
+            await syncfs(FS);
+          } catch (err) {
+            console.log(err);
+          }
           dirPath.path = undefined;
           dirPath.path = FS.cwd();
-          syncfs();
         } catch (err) {
           console.log(err);
         }
@@ -48,10 +53,14 @@
     fileInput.click();
   }
 
-  function createFolder() {
+  async function createFolder() {
     try {
       FS.mkdir(folderName);
-      syncfs();
+      try {
+        await syncfs(FS);
+      } catch(err) {
+        console.log(err)
+      }
       dirPath.path = undefined;
       dirPath.path = FS.cwd();
       folderCreationError = "";
@@ -62,13 +71,6 @@
     }
   }
 
-  function syncfs() {
-    FS.syncfs(false, (err) => {
-      if (err) {
-        console.log();
-      }
-    });
-  }
 </script>
 
 <div class="toolbar">
