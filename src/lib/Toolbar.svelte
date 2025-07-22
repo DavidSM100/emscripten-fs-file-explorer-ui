@@ -25,24 +25,29 @@
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.hidden = true;
+    fileInput.multiple = true;
     fileInput.onchange = async () => {
-      const file = fileInput.files[0];
-      if (file) {
-        let path = dirPath.path;
-        if (!path.endsWith("/")) {
-          path += "/";
+      const files = fileInput.files;
+      if (files.length) {
+        let dir = dirPath.path;
+        if (!dir.endsWith("/")) {
+          dir += "/";
         }
-        path += file.name;
-        const uint8arr = new Uint8Array(await file.arrayBuffer());
+        await Promise.all(
+          Array.from(files).map(async (file) => {
+            const path = dir + file.name;
+            const uint8arr = new Uint8Array(await file.arrayBuffer());
+            try {
+              FS.writeFile(path, uint8arr, { flags: "w+" });
+              dirPath.path = undefined;
+              dirPath.path = FS.cwd();
+            } catch (err) {
+              console.log(err);
+            }
+          })
+        );
         try {
-          FS.writeFile(path, uint8arr, { flags: "w+" });
-          try {
-            await syncfs(FS);
-          } catch (err) {
-            console.log(err);
-          }
-          dirPath.path = undefined;
-          dirPath.path = FS.cwd();
+          await syncfs(FS);
         } catch (err) {
           console.log(err);
         }
@@ -58,8 +63,8 @@
       FS.mkdir(folderName);
       try {
         await syncfs(FS);
-      } catch(err) {
-        console.log(err)
+      } catch (err) {
+        console.log(err);
       }
       dirPath.path = undefined;
       dirPath.path = FS.cwd();
@@ -70,7 +75,6 @@
       folderCreationError = String(err);
     }
   }
-
 </script>
 
 <div class="toolbar">
