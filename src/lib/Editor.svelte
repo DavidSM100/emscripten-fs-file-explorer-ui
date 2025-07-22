@@ -43,7 +43,7 @@
   textarea {
     flex: 1;
     resize: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     padding: 10px;
   }
 
