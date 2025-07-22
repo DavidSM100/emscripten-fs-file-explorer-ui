@@ -28,7 +28,7 @@
     const file = new Blob([
       FS.readFile(FS.getPath(entry), { encoding: "binary" }),
     ]);
-    
+
     const link = document.createElement("a");
     link.href = URL.createObjectURL(file);
     link.download = entry.name;
@@ -43,7 +43,7 @@
   }
 </script>
 
-<div>
+<div class="container">
   <button {onclick}>
     {#if FS.isDir(entry.mode)}
       <FolderIcon />
@@ -62,6 +62,11 @@
 </div>
 
 <style>
+  .container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 5px;
+  }
   button {
     display: inline-flex;
     gap: 5px;
