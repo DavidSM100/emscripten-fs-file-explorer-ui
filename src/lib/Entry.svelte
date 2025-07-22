@@ -1,6 +1,16 @@
 <script>
-  import { FileIcon, FileSymlink, FolderIcon } from "@lucide/svelte";
-  let { FS, entry, dirPath = $bindable(), editorOpened = $bindable() } = $props();
+  import {
+    DownloadIcon,
+    FileIcon,
+    FileSymlink,
+    FolderIcon,
+  } from "@lucide/svelte";
+  let {
+    FS,
+    entry,
+    dirPath = $bindable(),
+    editorOpened = $bindable(),
+  } = $props();
 
   function onclick() {
     if (FS.isDir(entry.mode)) {
@@ -12,6 +22,24 @@
       const path = FS.getPath(entry);
       editorOpened.path = path;
     }
+  }
+
+  function download() {
+    const file = new Blob([
+      FS.readFile(FS.getPath(entry), { encoding: "binary" }),
+    ]);
+    
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(file);
+    link.download = entry.name;
+
+    document.body.appendChild(link);
+    link.click();
+
+    setTimeout(() => {
+      URL.revokeObjectURL(link.href);
+      document.body.removeChild(link);
+    }, 1000);
   }
 </script>
 
@@ -26,11 +54,16 @@
     {/if}
     {entry.name}
   </button>
+  {#if FS.isFile(entry.mode)}
+    <button onclick={download}>
+      <DownloadIcon />
+    </button>
+  {/if}
 </div>
 
 <style>
   button {
-    display: flex;
+    display: inline-flex;
     gap: 5px;
     align-items: center;
     height: 30px;
