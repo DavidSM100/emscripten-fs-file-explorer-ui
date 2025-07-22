@@ -11,20 +11,26 @@
   let editorOpened = $state({ path: null });
 </script>
 
-{#if editorOpened.path !== null}
-  <Editor {FS} bind:editorOpened />
-{:else}
-  <Toolbar {FS} bind:dirPath {dirData} />
-  <div class="folder-content">
-    {#if dirData.data.object.contents}
-      {#each Object.values(dirData.data.object.contents) as entry}
-        <Entry {FS} {entry} bind:dirPath bind:editorOpened />
-      {/each}
-    {/if}
-  </div>
-{/if}
+<div class="container">
+  {#if editorOpened.path !== null}
+    <Editor {FS} bind:editorOpened />
+  {:else}
+    <Toolbar {FS} bind:dirPath {dirData} />
+    <div class="folder-content">
+      {#if dirData.data.object.contents}
+        {#each Object.values(dirData.data.object.contents) as entry}
+          <Entry {FS} {entry} bind:dirPath bind:editorOpened />
+        {/each}
+      {/if}
+    </div>
+  {/if}
+</div>
 
 <style>
+  .container {
+    padding: 5px;
+    height: calc(100% - 10px);
+  }
   .folder-content {
     display: flex;
     flex-direction: column;
