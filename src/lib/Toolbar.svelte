@@ -7,6 +7,8 @@
     XIcon,
   } from "@lucide/svelte";
   import { syncfs } from "./util";
+  import { addFiles } from "./lib";
+
   let { FS, dirPath = $bindable(), dirData } = $props();
 
   let showNewFolderDiv = $state(false);
@@ -27,27 +29,17 @@
     fileInput.hidden = true;
     fileInput.multiple = true;
     fileInput.onchange = async () => {
-      const files = fileInput.files;
+      const files = Array.from(fileInput.files);
       if (files.length) {
         let dir = dirPath.path;
         if (!dir.endsWith("/")) {
           dir += "/";
         }
-        await Promise.all(
-          Array.from(files).map(async (file) => {
-            const path = dir + file.name;
-            const uint8arr = new Uint8Array(await file.arrayBuffer());
-            try {
-              FS.writeFile(path, uint8arr, { flags: "w+" });
-              dirPath.path = undefined;
-              dirPath.path = FS.cwd();
-            } catch (err) {
-              console.log(err);
-            }
-          })
-        );
         try {
+          await addFiles(FS, dir, files);
           await syncfs(FS);
+          dirPath.path = undefined;
+          dirPath.path = FS.cwd();
         } catch (err) {
           console.log(err);
         }
