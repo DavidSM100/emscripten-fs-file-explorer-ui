@@ -17,7 +17,10 @@
   let folderName = $state("");
   let canCreateFolder = $derived(folderName.trim() !== "");
 
-  let folderCreationError = $state("");
+  /**
+   * @type {null | any}
+   */
+  let folderCreationError = $state(null);
 
   function goBack() {
     const path = dirData.data.parentPath;
@@ -62,11 +65,11 @@
       }
       dirPath.path = undefined;
       dirPath.path = FS.cwd();
-      folderCreationError = "";
+      folderCreationError = null;
       folderName = "";
       showNewFolderDiv = false;
     } catch (err) {
-      folderCreationError = String(err);
+      folderCreationError = err;
     }
   }
 </script>
@@ -110,7 +113,7 @@
       type="button"
       onclick={() => {
         showNewFolderDiv = false;
-        folderCreationError = "";
+        folderCreationError = null;
       }}
     >
       <XIcon />
@@ -118,9 +121,13 @@
   </form>
   <div role="alert">
     {#if folderCreationError}
-      <div class="error">
-        {folderCreationError}
-      </div>
+      <!-- `key` ensures that the error is re-announced,
+      even if the error text is the same. -->
+      {#key folderCreationError}
+        <div class="error">
+          {folderCreationError}
+        </div>
+      {/key}
     {/if}
   </div>
 {/if}
