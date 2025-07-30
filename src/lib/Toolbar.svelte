@@ -82,15 +82,26 @@
   <input type="text" bind:value={dirPath.path} disabled />
 </div>
 {#if showNewFolderDiv}
-  <div class="new-folder">
-    <input type="text" placeholder="Folder name" bind:value={folderName} />
-    <button disabled={!canCreateFolder} onclick={createFolder}>
+  <form
+    class="new-folder"
+    onsubmit={(e) => {
+      e.preventDefault();
+      createFolder();
+    }}
+  >
+    <input
+      type="text"
+      placeholder="Folder name"
+      required
+      bind:value={folderName}
+    />
+    <button type="submit" disabled={!canCreateFolder}>
       <CheckIcon />
     </button>
-    <button onclick={() => (showNewFolderDiv = false)}>
+    <button type="button" onclick={() => (showNewFolderDiv = false)}>
       <XIcon />
     </button>
-  </div>
+  </form>
   {#if folderCreationError}
     <div class="error">
       {folderCreationError}
