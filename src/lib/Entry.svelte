@@ -46,16 +46,16 @@
 <div class="container">
   <button {onclick}>
     {#if FS.isDir(entry.mode)}
-      <FolderIcon />
+      <FolderIcon aria-label="Directory" />
     {:else if FS.isFile(entry.mode)}
-      <FileIcon />
+      <FileIcon aria-label="File" />
     {:else if FS.isLink(entry.mode)}
-      <FileSymlink />
+      <FileSymlink aria-label="Symlink" />
     {/if}
     {entry.name}
   </button>
   {#if FS.isFile(entry.mode)}
-    <button onclick={download}>
+    <button onclick={download} aria-label="Download" title="Download">
       <DownloadIcon />
     </button>
   {/if}

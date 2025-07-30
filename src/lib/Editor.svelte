@@ -24,7 +24,7 @@
 
 <div class="container">
   <div>
-    <button onclick={close}>
+    <button onclick={close} title="Close" aria-label="Close">
       <ArrowLeftIcon />
     </button>
     <button disabled={saving} onclick={save}>
@@ -36,7 +36,7 @@
       {/if}
     </button>
   </div>
-  <textarea bind:value={text}></textarea>
+  <textarea aria-label="File contents" bind:value={text}></textarea>
 </div>
 
 <style>

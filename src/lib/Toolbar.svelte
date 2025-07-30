@@ -75,10 +75,10 @@
 </script>
 
 <div class="toolbar">
-  <button onclick={goBack}>
+  <button onclick={goBack} aria-label="Go back" title="Go back">
     <ArrowLeftIcon />
   </button>
-  <button onclick={importFiles}>
+  <button onclick={importFiles} aria-label="Import files" title="Import files">
     <FilePlusIcon />
   </button>
   <button
@@ -86,10 +86,18 @@
       showNewFolderDiv = true;
       tick().then(() => newFolderNameEl.focus());
     }}
+    aria-label="New folder"
+    title="New folder"
   >
     <FolderPlusIcon />
   </button>
-  <input type="text" bind:value={dirPath.path} disabled />
+  <input
+    type="text"
+    bind:value={dirPath.path}
+    disabled
+    aria-label="Current directory"
+    title="Current directory"
+  />
 </div>
 {#if showNewFolderDiv}
   <form
@@ -106,7 +114,12 @@
       bind:value={folderName}
       bind:this={newFolderNameEl}
     />
-    <button type="submit" disabled={!canCreateFolder}>
+    <button
+      type="submit"
+      disabled={!canCreateFolder}
+      aria-label="Create folder"
+      title="Create folder"
+    >
       <CheckIcon />
     </button>
     <button
@@ -115,6 +128,8 @@
         showNewFolderDiv = false;
         folderCreationError = null;
       }}
+      aria-label="Cancel"
+      title="Cancel"
     >
       <XIcon />
     </button>
