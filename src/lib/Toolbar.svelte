@@ -116,11 +116,13 @@
       <XIcon />
     </button>
   </form>
-  {#if folderCreationError}
-    <div class="error">
-      {folderCreationError}
-    </div>
-  {/if}
+  <div role="alert">
+    {#if folderCreationError}
+      <div class="error">
+        {folderCreationError}
+      </div>
+    {/if}
+  </div>
 {/if}
 <hr />
 
