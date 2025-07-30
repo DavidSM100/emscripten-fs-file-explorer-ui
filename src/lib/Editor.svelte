@@ -23,7 +23,7 @@
 </script>
 
 <div class="container">
-  <div>
+  <section role="toolbar">
     <button onclick={close} title="Close" aria-label="Close">
       <ArrowLeftIcon />
     </button>
@@ -35,7 +35,7 @@
         Save
       {/if}
     </button>
-  </div>
+  </section>
   <textarea aria-label="File contents" bind:value={text}></textarea>
 </div>
 

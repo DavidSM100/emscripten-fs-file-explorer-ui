@@ -48,13 +48,13 @@
     <Editor {FS} bind:editorOpened />
   {:else}
     <Toolbar {FS} bind:dirPath {dirData} />
-    <div class="folder-content">
+    <section class="folder-content" aria-label="Folder content">
       {#if dirData.data.object.contents}
         {#each Object.values(dirData.data.object.contents) as entry}
           <Entry {FS} {entry} bind:dirPath bind:editorOpened />
         {/each}
       {/if}
-    </div>
+    </section>
   {/if}
 </div>
 

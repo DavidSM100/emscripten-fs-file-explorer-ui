@@ -74,7 +74,7 @@
   }
 </script>
 
-<div class="toolbar">
+<section role="toolbar" class="toolbar">
   <button onclick={goBack} aria-label="Go back" title="Go back">
     <ArrowLeftIcon />
   </button>
@@ -98,7 +98,7 @@
     aria-label="Current directory"
     title="Current directory"
   />
-</div>
+</section>
 {#if showNewFolderDiv}
   <form
     class="new-folder"
