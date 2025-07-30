@@ -2,7 +2,7 @@
   import {
     ArrowLeftIcon,
     CheckIcon,
-    FilePlusIcon,
+    FileUpIcon,
     FolderPlusIcon,
     XIcon,
   } from "@lucide/svelte";
@@ -79,7 +79,7 @@
     <ArrowLeftIcon />
   </button>
   <button onclick={importFiles} aria-label="Import files" title="Import files">
-    <FilePlusIcon />
+    <FileUpIcon />
   </button>
   <button
     onclick={() => {
