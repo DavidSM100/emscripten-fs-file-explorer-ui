@@ -28,7 +28,7 @@
     FS.chdir(path);
   }
 
-  function importFile() {
+  function importFiles() {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.hidden = true;
@@ -78,7 +78,7 @@
   <button onclick={goBack}>
     <ArrowLeftIcon />
   </button>
-  <button onclick={importFile}>
+  <button onclick={importFiles}>
     <FilePlusIcon />
   </button>
   <button
