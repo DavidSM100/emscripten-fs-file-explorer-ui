@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/dist/emscripten-fs-file-explorer.css" />
-    <script src="/dist/emscripten-fs-file-explorer.js"></script>
   </head>
   <body>
     <div id="fileExplorer"></div>
     <script type="module">
+      import openFileExplorer from "/dist/emscripten-fs-file-explorer.js"
+
       async function start() {
         const ioquake3 = await import("/ioquake3_opengl2.wasm32.js");
         const module = await ioquake3.default();
-        window.openFileExplorer(
+        openFileExplorer(
           document.getElementById("fileExplorer"),
           module.FS
         );
