@@ -8,9 +8,11 @@
   } from "@lucide/svelte";
   import { syncfs } from "./util";
   import { addFiles } from "./lib";
+  import { tick } from "svelte";
 
   let { FS, dirPath = $bindable(), dirData } = $props();
 
+  let newFolderNameEl = $state(undefined);
   let showNewFolderDiv = $state(false);
   let folderName = $state("");
   let canCreateFolder = $derived(folderName.trim() !== "");
@@ -76,7 +78,12 @@
   <button onclick={importFile}>
     <FilePlusIcon />
   </button>
-  <button onclick={() => (showNewFolderDiv = true)}>
+  <button
+    onclick={() => {
+      showNewFolderDiv = true;
+      tick().then(() => newFolderNameEl.focus());
+    }}
+  >
     <FolderPlusIcon />
   </button>
   <input type="text" bind:value={dirPath.path} disabled />
@@ -94,6 +101,7 @@
       placeholder="Folder name"
       required
       bind:value={folderName}
+      bind:this={newFolderNameEl}
     />
     <button type="submit" disabled={!canCreateFolder}>
       <CheckIcon />
