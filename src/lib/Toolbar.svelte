@@ -106,7 +106,13 @@
     <button type="submit" disabled={!canCreateFolder}>
       <CheckIcon />
     </button>
-    <button type="button" onclick={() => (showNewFolderDiv = false)}>
+    <button
+      type="button"
+      onclick={() => {
+        showNewFolderDiv = false;
+        folderCreationError = "";
+      }}
+    >
       <XIcon />
     </button>
   </form>
