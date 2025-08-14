@@ -1,5 +1,5 @@
 {
-  "name": "emscripten-fs-file-explorer",
+  "name": "emscripten-fs-file-explorer-ui",
   "private": true,
   "version": "0.5.3",
   "type": "module",
