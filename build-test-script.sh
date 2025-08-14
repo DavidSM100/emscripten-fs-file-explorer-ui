@@ -1,0 +1,1 @@
+emcc test-script.c -o emscripten.js -sFORCE_FILESYSTEM -sEXPORTED_RUNTIME_METHODS=FS -sEXPORT_ES6
