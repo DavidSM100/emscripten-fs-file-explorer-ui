@@ -10,7 +10,7 @@
       import mountEmscriptenFileExplorer from "./src/mount.js";
 
       async function start() {
-        const emscripten = await import("./emscripten.js");
+        const emscripten = await import("./emscripten/emscripten.js");
         const module = await emscripten.default();
         const container = document.getElementById("app");
         mountEmscriptenFileExplorer(container, module.FS);

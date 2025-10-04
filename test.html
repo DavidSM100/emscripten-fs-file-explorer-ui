@@ -10,7 +10,7 @@
     <div id="fileExplorer"></div>
     <script type="module">
       async function start() {
-        const emscripten = await import("/emscripten.js");
+        const emscripten = await import("./emscripten/emscripten.js");
         const module = await emscripten.default();
         mountEmscriptenFileExplorer(
           document.getElementById("fileExplorer"),
