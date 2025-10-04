@@ -1,6 +1,6 @@
 {
   "name": "emscripten-fs-file-explorer-ui",
-  "private": true,
+  "main": "src/lib/index.js",
   "version": "0.5.3",
   "type": "module",
   "scripts": {
@@ -9,10 +9,10 @@
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.0.0",
-    "svelte": "^5.35.5",
     "vite": "^7.0.4"
   },
   "dependencies": {
+    "svelte": "^5.35.5",
     "@lucide/svelte": "^0.525.0"
   }
 }

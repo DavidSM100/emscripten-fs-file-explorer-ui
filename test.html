@@ -4,16 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/dist/emscripten-fs-file-explorer-ui.css" />
+    <script src="./dist/emscripten-fs-file-explorer-ui.iife.js"></script>
   </head>
   <body>
     <div id="fileExplorer"></div>
     <script type="module">
-      import openFileExplorer from "/dist/emscripten-fs-file-explorer-ui.js"
-
       async function start() {
         const emscripten = await import("/emscripten.js");
         const module = await emscripten.default();
-        openFileExplorer(
+        mountEmscriptenFileExplorer(
           document.getElementById("fileExplorer"),
           module.FS
         );

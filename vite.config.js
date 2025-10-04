@@ -6,10 +6,9 @@ export default defineConfig({
   plugins: [svelte()],
   build: {
     lib: {
-      name: "FileExplorer",
-      entry: "src/lib/index.js",
+      name: "mountEmscriptenFileExplorer",
+      entry: "src/mount.js",
       formats: ["iife"],
-      fileName: () => 'emscripten-fs-file-explorer-ui.js',
     },
   },
 });

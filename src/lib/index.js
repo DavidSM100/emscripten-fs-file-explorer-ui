@@ -1,9 +1,3 @@
-import { mount } from "svelte";
-import App from "./App.svelte";
+import EmscriptenFileExplorer from "./App.svelte";
 
-export default function openFileExplorer(container, FS, initialDir) {
-  mount(App, {
-    target: container,
-    props: { FS, initialDir },
-  });
-}
+export default EmscriptenFileExplorer;
