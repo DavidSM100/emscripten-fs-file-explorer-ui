@@ -649,10 +649,10 @@ var wasmBinaryFile;
 
 function findWasmBinary() {
   if (Module['locateFile']) {
-    return locateFile('emscripten.wasm');
+    return locateFile('test-script.wasm');
   }
   // Use bundler-friendly `new URL(..., import.meta.url)` pattern; works in browsers too.
-  return new URL('emscripten.wasm', import.meta.url).href;
+  return new URL('test-script.wasm', import.meta.url).href;
 }
 
 function getBinarySync(file) {
