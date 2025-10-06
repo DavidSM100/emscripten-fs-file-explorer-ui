@@ -1,6 +1,10 @@
 <script>
   import { ArrowLeftIcon, SaveIcon } from "@lucide/svelte";
   import { syncfs } from "./util";
+
+  /**
+   * @type {{FS: typeof globalThis.FS, editorOpened: {path: string}}}
+   */
   let { FS, editorOpened = $bindable() } = $props();
   let text = $state(FS.readFile(editorOpened.path, { encoding: "utf8" }));
   let saving = $state(false);

@@ -6,6 +6,9 @@
   import { addFiles } from "./lib";
   import { syncfs } from "./util";
 
+  /**
+   * @type {{FS: typeof globalThis.FS, initialDir: string}}
+   */
   let { FS, initialDir = FS.cwd() } = $props();
   FS.chdir(initialDir);
   let dirPath = $state({ path: initialDir });
