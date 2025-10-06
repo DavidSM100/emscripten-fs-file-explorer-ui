@@ -2,9 +2,13 @@
 
 Standalone File Explorer UI for the [Emscripten](https://emscripten.org) virtual [filesystem](https://emscripten.org/docs/api_reference/Filesystem-API.html#filesystem-api) for using in the browser.
 
+This may be useful if you have an existing project that uses Emscripten, such as a game, you can add this to let users explore and modify the file system.
+
+![File explorer screenshot](screenshots/Screenshot_2025-10-06_15-01-37.png)
+
 ## Installation
 
-```sh
+```bash
 npm install emscripten-fs-file-explorer-ui
 ```
 
@@ -82,3 +86,7 @@ Check the `emscripten` folder to see the source of the emscripten script we are 
 ```bash
 emcc test-script.c -o test-script.js -sFORCE_FILESYSTEM -sEXPORTED_RUNTIME_METHODS=FS -sEXPORT_ES6
 ```
+
+## License
+
+This software is distributed under the [LGPL-3.0](LICENSE.txt) license.
