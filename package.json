@@ -1,5 +1,6 @@
 {
   "name": "emscripten-fs-file-explorer-ui",
+  "version": "1.0.0",
   "description": "File explorer UI for the Emscripten Filesystem",
   "keywords": [
     "emscripten",
@@ -8,9 +9,18 @@
     "explorer",
     "UI"
   ],
+  "author": {
+    "name": "DavidSM100",
+    "email": "davidsm@systemli.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DavidSM100/emscripten-fs-file-explorer-ui"
+  },
+  "bugs": "https://github.com/DavidSM100/emscripten-fs-file-explorer-ui/issues",
+  "homepage": "https://github.com/DavidSM100/emscripten-fs-file-explorer-ui",
   "license": "LGPL-3.0",
   "main": "dist/emscripten-fs-file-explorer-ui.js",
-  "version": "0.5.3",
   "type": "module",
   "files": [
     "dist"
