@@ -42,7 +42,6 @@
     ".": {
       "import": "./dist/emscripten-fs-file-explorer-ui.js",
       "types": "./types.d.ts"
-    },
-    "./styles.css": "./dist/emscripten-fs-file-explorer-ui.css"
+    }
   }
 }

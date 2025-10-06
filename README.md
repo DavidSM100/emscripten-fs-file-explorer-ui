@@ -16,7 +16,6 @@ npm install emscripten-fs-file-explorer-ui
 
 ```javascript
 import mountEmscriptenFileExplorer from "emscripten-fs-file-explorer-ui";
-import "emscripten-fs-file-explorer-ui/styles.css";
 
 async function main() {
   const emscriptenScript = await import("emscripten-script.js");
@@ -35,7 +34,6 @@ If you are not using npm or a bundler you can download the standalone prebuilt f
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="./emscripten-fs-file-explorer-ui.css" rel="stylesheet" />
     <!-- Always use the .iife.js since it is minified and optimized for this use case -->
     <script src="./emscripten-fs-file-explorer-ui.iife.js"></script>
   </head>
