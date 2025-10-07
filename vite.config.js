@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     lib: {
       name: "mountEmscriptenFileExplorer",
-      entry: "src/lib/index.js",
+      entry: "src/index.js",
       formats: ["iife", "es"],
     },
   },
