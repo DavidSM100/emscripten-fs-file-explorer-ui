@@ -3,11 +3,11 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [svelte({ emitCss: false })],
   build: {
     lib: {
       name: "mountEmscriptenFileExplorer",
-      entry: "src/lib/index.js",
+      entry: "src/index.js",
       formats: ["iife", "es"],
     },
   },

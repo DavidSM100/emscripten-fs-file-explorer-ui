@@ -6,7 +6,11 @@
   import { addFiles } from "./lib";
   import { syncfs } from "./util";
 
-  let { FS, initialDir = FS.cwd() } = $props();
+  /**
+   * @type {{FS: typeof globalThis.FS, options: import("../types").FileExplorerOptions}}
+   */
+  let { FS, options = {} } = $props();
+  const initialDir = options.initialDir || FS.cwd();
   FS.chdir(initialDir);
   let dirPath = $state({ path: initialDir });
   let dirData = $derived({ data: FS.analyzePath(dirPath.path) });

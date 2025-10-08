@@ -5,6 +5,9 @@
     FileSymlink,
     FolderIcon,
   } from "@lucide/svelte";
+  /**
+   * @type {{FS: typeof globalThis.FS, entry: globalThis.FS.FSNode, dirPath: {path: string}, editorOpened: {path: string}}}
+   */
   let {
     FS,
     entry,
