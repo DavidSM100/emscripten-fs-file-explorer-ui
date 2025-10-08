@@ -19,7 +19,7 @@
   },
   "bugs": "https://github.com/DavidSM100/emscripten-fs-file-explorer-ui/issues",
   "homepage": "https://github.com/DavidSM100/emscripten-fs-file-explorer-ui",
-  "license": "LGPL-3.0",
+  "license": "LGPL-3.0-or-later",
   "main": "dist/emscripten-fs-file-explorer-ui.js",
   "types": "types.d.ts",
   "type": "module",
