@@ -23,8 +23,10 @@ async function main() {
 
   const container = document.getElementById("emscripten-explorer");
 
-  // Last argument is the initial directory (optional)
-  mountEmscriptenFileExplorer(container, emscriptenModule.FS, "/home/web_user");
+  // Last param is the configuration options (Optional)
+  mountEmscriptenFileExplorer(container, emscriptenModule.FS, {
+    initialDir: "/home/web_user",
+  });
 }
 ```
 
@@ -45,11 +47,9 @@ If you are not using npm or a bundler you can download the standalone prebuilt f
       const emscriptenModule = await emscriptenScript.default();
       const container = document.getElementById("explorer");
       // This function is exposed as a global variable when using the .iife.js prebuilt file
-      mountEmscriptenFileExplorer(
-        container,
-        emscriptenModule.FS,
-        "/home/web_user"
-      );
+      mountEmscriptenFileExplorer(container, emscriptenModule.FS, {
+        initialDir: "/home/web_user",
+      });
     </script>
   </body>
 </html>

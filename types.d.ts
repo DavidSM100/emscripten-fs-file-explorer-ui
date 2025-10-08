@@ -2,8 +2,12 @@
  * 
  * @param container HTML element where to mount the file explorer
  * @param FS The Emscripten filesystem object
- * @param initialDir Directory to open on start
+ * @param options Configuration options
  */
-declare function mountEmscriptenFileExplorer(container: HTMLElement, FS: typeof globalThis.FS, initialDir?: string): void
+declare function mountEmscriptenFileExplorer(container: HTMLElement, FS: typeof globalThis.FS, options?: FileExplorerOptions): void
+
+export interface FileExplorerOptions {
+    initialDir?: string
+}
 
 export default mountEmscriptenFileExplorer
