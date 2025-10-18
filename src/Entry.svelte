@@ -4,6 +4,8 @@
     FileIcon,
     FileSymlink,
     FolderIcon,
+    MoreVerticalIcon,
+    XIcon,
   } from "@lucide/svelte";
   /**
    * @type {{FS: typeof globalThis.FS, entry: globalThis.FS.FSNode, dirPath: {path: string}, editorOpened: {path: string}}}
@@ -14,6 +16,8 @@
     dirPath = $bindable(),
     editorOpened = $bindable(),
   } = $props();
+
+  let actionsDialog;
 
   function onclick() {
     if (FS.isDir(entry.mode)) {
@@ -46,6 +50,23 @@
   }
 </script>
 
+<dialog class="actions" bind:this={actionsDialog}>
+  <div class="container">
+    <div class="header">
+      <b>{entry.name}</b>
+      <button aria-label="Close" onclick={() => actionsDialog.close()}>
+        <XIcon />
+      </button>
+    </div>
+    <div class="buttons">
+      <button onclick={download}>
+        <DownloadIcon />
+        Download
+      </button>
+    </div>
+  </div>
+</dialog>
+
 <div class="container">
   <button {onclick}>
     {#if FS.isDir(entry.mode)}
@@ -58,8 +79,8 @@
     {entry.name}
   </button>
   {#if FS.isFile(entry.mode)}
-    <button onclick={download} aria-label="Download" title="Download">
-      <DownloadIcon />
+    <button aria-label="More" onclick={() => actionsDialog.showModal()}>
+      <MoreVerticalIcon />
     </button>
   {/if}
 </div>
@@ -75,5 +96,27 @@
     gap: 5px;
     align-items: center;
     height: 30px;
+  }
+  .actions {
+    min-width: 300px;
+    min-height: 300px;
+    padding: 5px;
+    border: 2px solid;
+    border-radius: 5px;
+  }
+  .actions .container,
+  .actions .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .actions .header {
+    display: flex;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .actions .buttons button {
+    width: 100%;
   }
 </style>
