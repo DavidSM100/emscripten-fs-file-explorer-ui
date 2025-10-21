@@ -5,15 +5,18 @@
     FileSymlink,
     FolderIcon,
     MoreVerticalIcon,
+    TrashIcon,
     XIcon,
   } from "@lucide/svelte";
   import { dirPath, editorOpened } from "./state.svelte";
+  import { syncfs } from "./util";
   /**
    * @type {{FS: typeof globalThis.FS, entry: globalThis.FS.FSNode}}
    */
   let { FS, entry } = $props();
 
   let actionsDialog;
+  let deleteDialog;
 
   function onclick() {
     if (FS.isDir(entry.mode)) {
@@ -44,6 +47,18 @@
       document.body.removeChild(link);
     }, 1000);
   }
+
+  async function remove() {
+    try {
+      FS.unlink(FS.getPath(entry));
+    } catch (err) {
+      console.log(err);
+    }
+    await syncfs(FS);
+    dirPath.path = undefined;
+    dirPath.path = FS.cwd();
+    deleteDialog.close();
+  }
 </script>
 
 <dialog class="actions" bind:this={actionsDialog}>
@@ -59,7 +74,27 @@
         <DownloadIcon />
         Download
       </button>
+      <button
+        onclick={() => {
+          actionsDialog.close();
+          deleteDialog.showModal();
+        }}
+      >
+        <TrashIcon />
+        Delete
+      </button>
     </div>
+  </div>
+</dialog>
+
+<dialog class="delete-dialog" bind:this={deleteDialog}>
+  <div>
+    Are you sure you want to delete "{entry.name}" ?
+  </div>
+  <br />
+  <div style="display: flex; justify-content: space-between;">
+    <button onclick={() => deleteDialog.close()}>Cancel</button>
+    <button onclick={remove}>Delete</button>
   </div>
 </dialog>
 
@@ -93,9 +128,10 @@
     align-items: center;
     height: 30px;
   }
-  .actions {
+  dialog {
     min-width: 300px;
     min-height: 300px;
+    max-width: 500px;
     padding: 5px;
     border: 2px solid;
     border-radius: 5px;
@@ -114,5 +150,11 @@
   }
   .actions .buttons button {
     width: 100%;
+  }
+
+  .delete-dialog button {
+    width: 40%;
+    text-align: center;
+    display: inline-block;
   }
 </style>
