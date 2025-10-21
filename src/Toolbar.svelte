@@ -6,8 +6,7 @@
     FolderPlusIcon,
     XIcon,
   } from "@lucide/svelte";
-  import { syncfs } from "./util";
-  import { addFiles } from "./lib";
+  import { addFiles, syncfs } from "./lib";
   import { tick } from "svelte";
   import { dirPath } from "./state.svelte";
 

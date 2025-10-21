@@ -9,7 +9,7 @@
     XIcon,
   } from "@lucide/svelte";
   import { dirPath, editorOpened } from "./state.svelte";
-  import { syncfs } from "./util";
+  import { syncfs } from "./lib";
   /**
    * @type {{FS: typeof globalThis.FS, entry: globalThis.FS.FSNode}}
    */

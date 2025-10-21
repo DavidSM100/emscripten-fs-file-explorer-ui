@@ -1,8 +1,7 @@
 <script>
   import Entry from "./Entry.svelte";
   import { onMount } from "svelte";
-  import { addFiles } from "./lib";
-  import { syncfs } from "./util";
+  import { addFiles, syncfs } from "./lib";
   import { dirPath } from "./state.svelte";
   let { FS, dirData } = $props();
 

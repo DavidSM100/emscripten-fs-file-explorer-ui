@@ -1,4 +1,4 @@
-export { addFiles };
+export { addFiles, syncfs };
 
 /**
  * 
@@ -24,4 +24,20 @@ async function addFiles(FS, dir, files) {
       await addFile(FS, dir, file);
     })
   );
+}
+
+/**
+ * 
+ * @param {typeof globalThis.FS} FS 
+ * @returns 
+ */
+function syncfs(FS) {
+  return new Promise((resolve, reject) => {
+    FS.syncfs(false, (err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve();
+    });
+  });
 }
