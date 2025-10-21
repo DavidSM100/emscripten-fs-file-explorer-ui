@@ -8,9 +8,15 @@
    * @type {{FS: typeof globalThis.FS, options: import("../types").FileExplorerOptions}}
    */
   let { FS, options = {} } = $props();
-  const initialDir = options.initialDir || FS.cwd();
-  FS.chdir(initialDir);
-  dirPath.path = initialDir;
+  let initialDir = options.initialDir || FS.cwd();
+  try {
+    FS.chdir(initialDir);
+  } catch (err) {
+    console.log("Invalid `initialDir` value, using default value.");
+    initialDir = FS.cwd();
+  } finally {
+    dirPath.path = initialDir;
+  }
   let dirData = $derived({ data: FS.analyzePath(dirPath.path) });
 </script>
 
