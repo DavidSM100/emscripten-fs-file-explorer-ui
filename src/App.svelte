@@ -59,7 +59,9 @@
             <Entry {FS} {entry} />
           {/each}
         {:else}
-          This folder is empty
+          <div class="empty-info">
+            <div>This folder is empty</div>
+          </div>
         {/if}
       {/if}
     </section>
@@ -72,8 +74,16 @@
     height: calc(100% - 10px);
   }
   .folder-content {
+    height: 100%;
     display: flex;
     flex-direction: column;
     row-gap: 5px;
+  }
+  .empty-info {
+    height: 100%;
+    color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
