@@ -5,6 +5,7 @@
   import { onMount } from "svelte";
   import { addFiles } from "./lib";
   import { syncfs } from "./util";
+  import { dirPath, editorOpened } from "./state.svelte";
 
   /**
    * @type {{FS: typeof globalThis.FS, options: import("../types").FileExplorerOptions}}
@@ -12,10 +13,8 @@
   let { FS, options = {} } = $props();
   const initialDir = options.initialDir || FS.cwd();
   FS.chdir(initialDir);
-  let dirPath = $state({ path: initialDir });
+  dirPath.path = initialDir;
   let dirData = $derived({ data: FS.analyzePath(dirPath.path) });
-
-  let editorOpened = $state({ path: null });
 
   let dropZone;
   onMount(() => {
@@ -49,15 +48,15 @@
 
 <div class="container" bind:this={dropZone}>
   {#if editorOpened.path !== null}
-    <Editor {FS} bind:editorOpened />
+    <Editor {FS} />
   {:else}
-    <Toolbar {FS} bind:dirPath {dirData} />
+    <Toolbar {FS} {dirData} />
     <section class="folder-content" aria-label="Folder content">
       {#if dirData.data.object.contents}
         {@const contentsArr = Object.values(dirData.data.object.contents)}
         {#if contentsArr.length > 0}
           {#each contentsArr as entry}
-            <Entry {FS} {entry} bind:dirPath bind:editorOpened />
+            <Entry {FS} {entry} />
           {/each}
         {:else}
           This folder is empty

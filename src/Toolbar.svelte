@@ -9,8 +9,9 @@
   import { syncfs } from "./util";
   import { addFiles } from "./lib";
   import { tick } from "svelte";
+  import { dirPath } from "./state.svelte";
 
-  let { FS, dirPath = $bindable(), dirData } = $props();
+  let { FS, dirData } = $props();
 
   let newFolderNameEl = $state(undefined);
   let showNewFolderDiv = $state(false);

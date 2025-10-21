@@ -7,15 +7,11 @@
     MoreVerticalIcon,
     XIcon,
   } from "@lucide/svelte";
+  import { dirPath, editorOpened } from "./state.svelte";
   /**
-   * @type {{FS: typeof globalThis.FS, entry: globalThis.FS.FSNode, dirPath: {path: string}, editorOpened: {path: string}}}
+   * @type {{FS: typeof globalThis.FS, entry: globalThis.FS.FSNode}}
    */
-  let {
-    FS,
-    entry,
-    dirPath = $bindable(),
-    editorOpened = $bindable(),
-  } = $props();
+  let { FS, entry } = $props();
 
   let actionsDialog;
 
