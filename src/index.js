@@ -1,5 +1,5 @@
 import { mount } from "svelte";
-import App from "./App.svelte";
+import App from "./components/App.svelte";
 
 /**
  * @type {import("../types").default}

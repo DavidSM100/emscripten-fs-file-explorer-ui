@@ -1,8 +1,8 @@
 <script>
   import Entry from "./Entry.svelte";
   import { onMount } from "svelte";
-  import { addFiles, syncfs } from "./lib";
-  import { dirPath } from "./state.svelte";
+  import { addFiles, syncfs } from "../lib";
+  import { dirPath } from "../state.svelte";
   let { FS, dirData } = $props();
 
   let dropZone;

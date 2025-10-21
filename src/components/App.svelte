@@ -2,10 +2,10 @@
   import Toolbar from "./Toolbar.svelte";
   import FolderContent from "./FolderContent.svelte";
   import Editor from "./Editor.svelte";
-  import { dirPath, editorOpened } from "./state.svelte";
+  import { dirPath, editorOpened } from "../state.svelte";
 
   /**
-   * @type {{FS: typeof globalThis.FS, options: import("../types").FileExplorerOptions}}
+   * @type {{FS: typeof globalThis.FS, options: import("../../types").FileExplorerOptions}}
    */
   let { FS, options = {} } = $props();
   let initialDir = options.initialDir || FS.cwd();

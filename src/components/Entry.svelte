@@ -8,8 +8,8 @@
     TrashIcon,
     XIcon,
   } from "@lucide/svelte";
-  import { dirPath, editorOpened } from "./state.svelte";
-  import { syncfs } from "./lib";
+  import { dirPath, editorOpened } from "../state.svelte";
+  import { syncfs } from "../lib";
   /**
    * @type {{FS: typeof globalThis.FS, entry: globalThis.FS.FSNode}}
    */

@@ -6,9 +6,9 @@
     FolderPlusIcon,
     XIcon,
   } from "@lucide/svelte";
-  import { addFiles, syncfs } from "./lib";
+  import { addFiles, syncfs } from "../lib";
   import { tick } from "svelte";
-  import { dirPath } from "./state.svelte";
+  import { dirPath } from "../state.svelte";
 
   let { FS, dirData } = $props();
 

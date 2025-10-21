@@ -1,7 +1,7 @@
 <script>
   import { ArrowLeftIcon, SaveIcon } from "@lucide/svelte";
-  import { syncfs } from "./lib";
-  import { editorOpened } from "./state.svelte";
+  import { syncfs } from "../lib";
+  import { editorOpened } from "../state.svelte";
 
   /**
    * @type {{FS: typeof globalThis.FS}}
