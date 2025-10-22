@@ -4,8 +4,10 @@
   import { addFiles, syncfs } from "../lib";
   import { dirPath } from "../state.svelte";
   import type { EmscriptenFS } from "../../types";
-  let { FS, dirData }: { FS: EmscriptenFS; dirData: { data: FS.Analyze } } =
-    $props();
+  let {
+    FS,
+    dirContent,
+  }: { FS: EmscriptenFS; dirContent: globalThis.FS.FSNode[] } = $props();
 
   let dropZone: HTMLElement;
   onMount(() => {
@@ -43,17 +45,14 @@
   aria-label="Folder content"
   bind:this={dropZone}
 >
-  {#if dirData.data.object.contents}
-    {@const contentsArr = Object.values(dirData.data.object.contents)}
-    {#if contentsArr.length > 0}
-      {#each contentsArr as entry}
-        <Entry {FS} {entry} />
-      {/each}
-    {:else}
-      <div class="empty-info">
-        <div>This folder is empty</div>
-      </div>
-    {/if}
+  {#if dirContent.length > 0}
+    {#each dirContent as entry}
+      <Entry {FS} {entry} />
+    {/each}
+  {:else}
+    <div class="empty-info">
+      <div>This folder is empty</div>
+    </div>
   {/if}
 </section>
 

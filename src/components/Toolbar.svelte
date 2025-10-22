@@ -11,10 +11,7 @@
   import { dirPath } from "../state.svelte";
   import type { EmscriptenFS } from "../../types";
 
-  let {
-    FS,
-    dirData,
-  }: { FS: EmscriptenFS; dirData: { data: globalThis.FS.Analyze } } = $props();
+  let { FS, dirParent }: { FS: EmscriptenFS; dirParent: string } = $props();
 
   let newFolderNameEl: HTMLInputElement | undefined = $state(undefined);
   let showNewFolderDiv = $state(false);
@@ -24,9 +21,8 @@
   let folderCreationError: null | any = $state(null);
 
   function goBack() {
-    const path = dirData.data.parentPath;
-    dirPath.path = path;
-    FS.chdir(path);
+    dirPath.path = dirParent;
+    FS.chdir(dirPath.path);
   }
 
   function importFiles() {

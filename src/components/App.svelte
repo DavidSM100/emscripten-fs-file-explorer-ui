@@ -16,15 +16,25 @@
   } finally {
     dirPath.path = initialDir;
   }
-  let dirData = $derived({ data: FS.analyzePath(dirPath.path) });
+  let dirData = $derived(FS.analyzePath(dirPath.path));
+  let dirParent = $derived(dirData.parentPath);
+  let dirContent: globalThis.FS.FSNode[] = $derived.by(() => {
+    //@ts-ignore
+    const contents = dirData.object.contents;
+    if (contents) {
+      return Object.values(contents);
+    } else {
+      return [];
+    }
+  });
 </script>
 
 <div class="container">
   {#if editorOpened.path !== null}
     <Editor {FS} />
   {:else}
-    <Toolbar {FS} {dirData} />
-    <FolderContent {FS} {dirData} />
+    <Toolbar {FS} {dirParent} />
+    <FolderContent {FS} {dirContent} />
   {/if}
 </div>
 
