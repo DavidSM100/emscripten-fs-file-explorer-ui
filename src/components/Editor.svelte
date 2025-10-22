@@ -46,7 +46,7 @@
   textarea {
     flex: 1;
     resize: none;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     padding: 10px;
   }
 

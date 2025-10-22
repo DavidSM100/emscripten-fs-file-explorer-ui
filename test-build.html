@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
         const module = await emscripten.default();
         mountEmscriptenFileExplorer(
           document.getElementById("fileExplorer"),
-          module.FS
+          module.FS,
         );
       }
 

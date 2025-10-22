@@ -30,7 +30,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@lucide/svelte": "^0.525.0",
@@ -38,6 +39,8 @@
     "@tsconfig/svelte": "^5.0.5",
     "@types/emscripten": "^1.41.2",
     "@types/node": "^24.8.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-svelte": "^3.4.0",
     "svelte": "^5.35.5",
     "svelte-check": "^4.3.3",
     "typescript": "^5.9.3",

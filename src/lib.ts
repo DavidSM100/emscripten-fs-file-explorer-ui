@@ -11,7 +11,7 @@ async function addFiles(FS: EmscriptenFS, dir: string, files: File[]) {
   await Promise.all(
     files.map(async (file) => {
       await addFile(FS, dir, file);
-    })
+    }),
   );
 }
 

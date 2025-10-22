@@ -5,7 +5,7 @@ import type { FileExplorerOptions, EmscriptenFS } from "../types";
 export default function mountEmscriptenFileExplorer(
   container: HTMLElement,
   FS: EmscriptenFS,
-  options: FileExplorerOptions
+  options: FileExplorerOptions,
 ) {
   mount(App, {
     target: container,
