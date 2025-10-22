@@ -1,17 +1,19 @@
-<script>
+<script lang="ts">
   import Entry from "./Entry.svelte";
   import { onMount } from "svelte";
   import { addFiles, syncfs } from "../lib";
   import { dirPath } from "../state.svelte";
-  let { FS, dirData } = $props();
+  import type { EmscriptenFS } from "../../types";
+  let { FS, dirData }: { FS: EmscriptenFS; dirData: { data: FS.Analyze } } =
+    $props();
 
-  let dropZone;
+  let dropZone: HTMLElement;
   onMount(() => {
     ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
       dropZone.addEventListener(eventName, preventDefault, false);
     });
 
-    function preventDefault(e) {
+    function preventDefault(e: Event) {
       e.preventDefault();
       e.stopPropagation();
     }
@@ -19,10 +21,11 @@
     dropZone.addEventListener("drop", onDrop);
   });
 
-  async function onDrop(e) {
+  async function onDrop(e: DragEvent) {
+    if (!e.dataTransfer) return;
     const files = Array.from(e.dataTransfer.files);
     if (!files.length) return;
-    let dir = dirPath.path;
+    let dir = dirPath.path!;
     if (!dir.endsWith("/")) dir += "/";
     try {
       await addFiles(FS, dir, files);

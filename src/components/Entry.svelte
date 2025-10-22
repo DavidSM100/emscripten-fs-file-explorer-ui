@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import {
     DownloadIcon,
     FileIcon,
@@ -10,13 +10,13 @@
   } from "@lucide/svelte";
   import { dirPath, editorOpened } from "../state.svelte";
   import { syncfs } from "../lib";
-  /**
-   * @type {{FS: typeof globalThis.FS, entry: globalThis.FS.FSNode}}
-   */
-  let { FS, entry } = $props();
+  import type { EmscriptenFS } from "../../types";
 
-  let actionsDialog;
-  let deleteDialog;
+  let { FS, entry }: { FS: EmscriptenFS; entry: globalThis.FS.FSNode } =
+    $props();
+
+  let actionsDialog: HTMLDialogElement;
+  let deleteDialog: HTMLDialogElement;
 
   function onclick() {
     if (FS.isDir(entry.mode)) {
@@ -32,6 +32,7 @@
 
   function download() {
     const file = new Blob([
+      //@ts-ignore
       FS.readFile(FS.getPath(entry), { encoding: "binary" }),
     ]);
 

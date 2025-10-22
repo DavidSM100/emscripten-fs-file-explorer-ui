@@ -29,13 +29,18 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
     "@lucide/svelte": "^0.525.0",
     "@sveltejs/vite-plugin-svelte": "^6.0.0",
+    "@tsconfig/svelte": "^5.0.5",
     "@types/emscripten": "^1.41.2",
+    "@types/node": "^24.8.0",
     "svelte": "^5.35.5",
+    "svelte-check": "^4.3.3",
+    "typescript": "^5.9.3",
     "vite": "^7.0.4"
   },
   "exports": {

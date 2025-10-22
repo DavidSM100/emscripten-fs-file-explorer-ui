@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import {
     ArrowLeftIcon,
     CheckIcon,
@@ -9,18 +9,19 @@
   import { addFiles, syncfs } from "../lib";
   import { tick } from "svelte";
   import { dirPath } from "../state.svelte";
+  import type { EmscriptenFS } from "../../types";
 
-  let { FS, dirData } = $props();
+  let {
+    FS,
+    dirData,
+  }: { FS: EmscriptenFS; dirData: { data: globalThis.FS.Analyze } } = $props();
 
-  let newFolderNameEl = $state(undefined);
+  let newFolderNameEl: HTMLInputElement | undefined = $state(undefined);
   let showNewFolderDiv = $state(false);
   let folderName = $state("");
   let canCreateFolder = $derived(folderName.trim() !== "");
 
-  /**
-   * @type {null | any}
-   */
-  let folderCreationError = $state(null);
+  let folderCreationError: null | any = $state(null);
 
   function goBack() {
     const path = dirData.data.parentPath;
@@ -34,9 +35,10 @@
     fileInput.hidden = true;
     fileInput.multiple = true;
     fileInput.onchange = async () => {
+      //@ts-ignore
       const files = Array.from(fileInput.files);
       if (files.length) {
-        let dir = dirPath.path;
+        let dir = dirPath.path!;
         if (!dir.endsWith("/")) {
           dir += "/";
         }
@@ -84,7 +86,7 @@
   <button
     onclick={() => {
       showNewFolderDiv = true;
-      tick().then(() => newFolderNameEl.focus());
+      tick().then(() => newFolderNameEl!.focus());
     }}
     aria-label="New folder"
     title="New folder"

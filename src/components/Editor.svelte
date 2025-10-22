@@ -1,18 +1,16 @@
-<script>
+<script lang="ts">
   import { ArrowLeftIcon, SaveIcon } from "@lucide/svelte";
   import { syncfs } from "../lib";
   import { editorOpened } from "../state.svelte";
+  import type { EmscriptenFS } from "../../types";
 
-  /**
-   * @type {{FS: typeof globalThis.FS}}
-   */
-  let { FS } = $props();
-  let text = $state(FS.readFile(editorOpened.path, { encoding: "utf8" }));
+  let { FS }: { FS: EmscriptenFS } = $props();
+  let text = $state(FS.readFile(editorOpened.path!, { encoding: "utf8" }));
   let saving = $state(false);
 
   async function save() {
     saving = true;
-    FS.writeFile(editorOpened.path, text);
+    FS.writeFile(editorOpened.path!, text);
     try {
       await syncfs(FS);
     } catch (err) {

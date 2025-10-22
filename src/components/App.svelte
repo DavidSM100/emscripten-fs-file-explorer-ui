@@ -1,13 +1,12 @@
-<script>
+<script lang="ts">
   import Toolbar from "./Toolbar.svelte";
   import FolderContent from "./FolderContent.svelte";
   import Editor from "./Editor.svelte";
   import { dirPath, editorOpened } from "../state.svelte";
+  import type { FileExplorerOptions, EmscriptenFS } from "../../types";
 
-  /**
-   * @type {{FS: typeof globalThis.FS, options: import("../../types").FileExplorerOptions}}
-   */
-  let { FS, options = {} } = $props();
+  let { FS, options = {} }: { FS: EmscriptenFS; options: FileExplorerOptions } =
+    $props();
   let initialDir = options.initialDir || FS.cwd();
   try {
     FS.chdir(initialDir);
