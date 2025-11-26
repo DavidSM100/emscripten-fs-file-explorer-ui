@@ -1,3 +1,5 @@
+<svelte:options customElement="emscripten-fs-explorer" />
+
 <script lang="ts">
   import Toolbar from "./Toolbar.svelte";
   import FolderContent from "./FolderContent.svelte";
